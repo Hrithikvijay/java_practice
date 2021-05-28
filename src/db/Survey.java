@@ -9,7 +9,7 @@ public class Survey {
         String mobile=reg.getMobileNum();
         String userid=reg.getUserid();
         Scanner sc =new Scanner(System.in);
-        Singletondatabase database = Singletondatabase.getInstance();
+        Database database = Singletondatabase.getInstance();
         System.out.print("This is an survey which is conducted for our advertisement purpose...\nIt takes less than half a minute to respond..\nwhould you like to respond... Yes/No : ");
         Boolean respond=(sc.nextLine()).toUpperCase().equals("YES");
         if(respond){

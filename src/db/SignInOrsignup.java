@@ -9,11 +9,11 @@ public class SignInOrsignup {
         while (true) {
             System.out.print("Enter Mobile Number : ");
             mobile = sc.nextLine();
-            Boolean isDigit=true;
-            for(int i=0;i<mobile.length();i++){
-                char digit=mobile.charAt(i);
-                if(!Character.isDigit(digit)){
-                    isDigit=false;
+            Boolean isDigit = true;
+            for (int i = 0; i < mobile.length(); i++) {
+                char digit = mobile.charAt(i);
+                if (!Character.isDigit(digit)) {
+                    isDigit = false;
                     break;
                 }
             }
@@ -23,7 +23,7 @@ public class SignInOrsignup {
                 System.out.println("Invalid mobile number.....Please do enter a valid mobile number..");
             }
         }
-        Singletondatabase database = Singletondatabase.getInstance();
+        Database database = Singletondatabase.getInstance();
         try {
             String pass = database.checkuserexistsandgetpass(mobile);
             if (pass.equals("")) {
@@ -31,7 +31,7 @@ public class SignInOrsignup {
                 Signup signup = new Signup();
                 signup.signup(mobile);
             } else {
-                System.out.println("Number exixts please do signin by entering password.....");
+                System.out.println("Number exixts.... please do signin by entering password.....");
                 Signin signin = new Signin();
                 signin.signin(pass);
             }

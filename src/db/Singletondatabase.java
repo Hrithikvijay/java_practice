@@ -2,7 +2,7 @@ package db;
 
 import java.sql.*;
 
-public class Singletondatabase {
+public class Singletondatabase implements Database {
     private static Singletondatabase single = null;
 
     private Singletondatabase() {
@@ -17,14 +17,14 @@ public class Singletondatabase {
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
 
-        Connection con = null;
+        Connection connection = null;
         Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_details", "root", "password");
-        return con;
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_details", "root", "password");
+        return connection;
 
     }
 
-    public String checkuserexistsandgetpass(String mobile) {
+    public String checkuserexistsandgetpass(String mobile) throws SQLException {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -40,6 +40,7 @@ public class Singletondatabase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        connection.close();
         return password;
     }
 
@@ -62,6 +63,7 @@ public class Singletondatabase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        connection.close();
     }
 
     public void insertSurveyDetails(String userid, String name, String mobile, String sport) throws SQLException {
@@ -83,5 +85,6 @@ public class Singletondatabase {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        connection.close();
     }
 }

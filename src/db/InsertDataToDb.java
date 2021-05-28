@@ -1,7 +1,7 @@
 package db;
 
 public class InsertDataToDb {
-    Singletondatabase database = Singletondatabase.getInstance();
+    Database database = Singletondatabase.getInstance();
     private String name;
     private String mobile;
     private String password;
